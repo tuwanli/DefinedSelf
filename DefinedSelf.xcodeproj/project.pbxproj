@@ -15,6 +15,7 @@
 		0D73C5711C1FA09700251196 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D73C56F1C1FA09700251196 /* LaunchScreen.storyboard */; };
 		0D73C57C1C1FA09800251196 /* DefinedSelfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D73C57B1C1FA09800251196 /* DefinedSelfTests.m */; };
 		0D73C5871C1FA09800251196 /* DefinedSelfUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D73C5861C1FA09800251196 /* DefinedSelfUITests.m */; };
+		0D73C5961C1FA17C00251196 /* TWLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D73C5951C1FA17C00251196 /* TWLAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		0D73C5821C1FA09800251196 /* DefinedSelfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DefinedSelfUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D73C5861C1FA09800251196 /* DefinedSelfUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefinedSelfUITests.m; sourceTree = "<group>"; };
 		0D73C5881C1FA09800251196 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D73C5941C1FA17C00251196 /* TWLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLAlertView.h; sourceTree = "<group>"; };
+		0D73C5951C1FA17C00251196 /* TWLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				0D73C5671C1FA09700251196 /* ViewController.h */,
 				0D73C5681C1FA09700251196 /* ViewController.m */,
 				0D73C56A1C1FA09700251196 /* Main.storyboard */,
+				0D73C5941C1FA17C00251196 /* TWLAlertView.h */,
+				0D73C5951C1FA17C00251196 /* TWLAlertView.m */,
 				0D73C56D1C1FA09700251196 /* Assets.xcassets */,
 				0D73C56F1C1FA09700251196 /* LaunchScreen.storyboard */,
 				0D73C5721C1FA09700251196 /* Info.plist */,
@@ -273,6 +278,7 @@
 				0D73C5691C1FA09700251196 /* ViewController.m in Sources */,
 				0D73C5661C1FA09700251196 /* AppDelegate.m in Sources */,
 				0D73C5631C1FA09700251196 /* main.m in Sources */,
+				0D73C5961C1FA17C00251196 /* TWLAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
