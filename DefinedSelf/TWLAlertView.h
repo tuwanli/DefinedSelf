@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 @protocol TWlALertviewDelegate<NSObject>
 @optional
--(void)didClickButtonAtIndex:(NSUInteger)index;
-
+-(void)didClickButtonAtIndex:(NSUInteger)index password:(NSString *)password;
+- (void)successPassword;
 @end
-@interface TWLAlertView : UIView
+@interface TWLAlertView : UIView<UITextFieldDelegate>
 @property (nonatomic,strong)UIView *blackView;
 @property (strong,nonatomic)UIView * alertview;
-@property (strong,nonatomic)NSString * maintitle;
-@property (strong,nonatomic)NSString * minorTitle;
-@property (strong,nonatomic)NSString * tipStr;
+@property (strong,nonatomic)NSString * title;
+@property (strong,nonatomic)NSString * cancelButtonTitle;
+@property (strong,nonatomic)NSString * okButtonTitle;
 @property (weak,nonatomic) id<TWlALertviewDelegate> delegate;
-- (void)AlertView:(NSString *)maintitle minorTitle:(NSString *)minorTitle tipString:(NSString *)tip;
+@property (nonatomic,assign)NSInteger type;
+@property (nonatomic,copy)NSString *password;
+@property (nonatomic,retain)UITextField *textF;
 @end

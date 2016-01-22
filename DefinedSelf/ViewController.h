@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 - (IBAction)click;
+- (IBAction)clicktwo;
 
 @end
 

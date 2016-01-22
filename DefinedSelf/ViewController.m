@@ -21,13 +21,22 @@
 }
 - (IBAction)click {
     TWLAlertView *alertView = [[TWLAlertView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    [alertView AlertView:@"确定要创建吗？" minorTitle:@"创建之前要要好好阅读提示，不要做出错误的决定，下面的按钮提示创建或者取消由你自己决定的，github中还有更换头像，单选照片，多选照片的demo" tipString:@"温馨提示"];
     alertView.delegate = self;
-    [self.view addSubview: alertView];
+    alertView.type = 10;
+    UIView * keywindow = [[UIApplication sharedApplication] keyWindow];
+    [keywindow addSubview: alertView];
     
 }
 
--(void)didClickButtonAtIndex:(NSUInteger)index{
+- (IBAction)clicktwo {
+    TWLAlertView *alertView = [[TWLAlertView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    alertView.delegate = self;
+    alertView.type = 11;
+    UIView * keywindow = [[UIApplication sharedApplication] keyWindow];
+    [keywindow addSubview: alertView];
+}
+
+-(void)didClickButtonAtIndex:(NSUInteger)index password:(NSString *)password{
     switch (index) {
         case 0:
             NSLog(@"Click ok");
