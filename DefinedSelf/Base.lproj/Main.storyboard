@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mU1-Lz-glG">
-                                <rect key="frame" x="128" y="243" width="120" height="82"/>
+                                <rect key="frame" x="128" y="193" width="120" height="82"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="c2O-UP-n6s"/>
                                     <constraint firstAttribute="width" constant="120" id="rji-Hs-OQA"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVr-F7-Gf5">
-                                <rect key="frame" x="107" y="364" width="161" height="39"/>
+                                <rect key="frame" x="107" y="294" width="161" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="N6c-hY-Kgg"/>
                                     <constraint firstAttribute="width" constant="161" id="twD-SW-LuB"/>
@@ -39,13 +39,26 @@
                                     <action selector="clicktwo" destination="BYZ-38-t0r" eventType="touchUpInside" id="Io7-HA-Q6s"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyd-4H-JZT">
+                                <rect key="frame" x="128" y="383" width="119" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="119" id="UZ7-Ch-Lah"/>
+                                    <constraint firstAttribute="height" constant="30" id="Wbo-4C-MFB"/>
+                                </constraints>
+                                <state key="normal" title="自定义alertView3"/>
+                                <connections>
+                                    <action selector="clickThree" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kD-15-VTP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mU1-Lz-glG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="3Ka-q5-7nG"/>
+                            <constraint firstItem="mU1-Lz-glG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="3Ka-q5-7nG"/>
+                            <constraint firstItem="fyd-4H-JZT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5GT-st-Ddj"/>
                             <constraint firstItem="mU1-Lz-glG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SoS-3F-lfm"/>
-                            <constraint firstItem="rVr-F7-Gf5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="atn-m9-C47"/>
+                            <constraint firstItem="rVr-F7-Gf5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-20" id="atn-m9-C47"/>
                             <constraint firstItem="rVr-F7-Gf5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kjh-Ce-j36"/>
+                            <constraint firstItem="fyd-4H-JZT" firstAttribute="top" secondItem="rVr-F7-Gf5" secondAttribute="bottom" constant="50" id="s7C-Lc-g6s"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

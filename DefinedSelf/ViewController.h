@@ -12,6 +12,8 @@
 
 - (IBAction)click;
 - (IBAction)clicktwo;
+- (IBAction)clickThree;
+
 
 @end
 

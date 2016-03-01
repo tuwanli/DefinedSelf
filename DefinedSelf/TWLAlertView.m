@@ -4,7 +4,7 @@
 //
 //  Created by 涂婉丽 on 15/12/15.
 //  Copyright © 2015年 涂婉丽. All rights reserved.
-//
+//eregfg
 
 #import "TWLAlertView.h"
 #define k_w [UIScreen mainScreen].bounds.size.width
@@ -24,12 +24,8 @@
         [self.blackView addGestureRecognizer:tap];
         [self addSubview:_blackView];
         //创建alert
-        self.alertview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 270, 250)];
+        self.alertview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 270, 190)];
         self.alertview.center = self.center;
-        //        UIView * keywindow = [[UIApplication sharedApplication] keyWindow];
-        //        self.alertview.center = CGPointMake(CGRectGetMidX(keywindow.frame), -CGRectGetMidY(keywindow.frame));
-        
-        
         self.alertview.layer.cornerRadius = 17;
         self.alertview.clipsToBounds = YES;
         self.alertview.backgroundColor = [UIColor whiteColor];
@@ -43,73 +39,56 @@
 {
     [super layoutSubviews];
     
-    UILabel *tipLable = [[UILabel alloc]initWithFrame:CGRectMake(0,0,270,50)];
-    tipLable.textAlignment = NSTextAlignmentCenter;
-    tipLable.font = [UIFont boldSystemFontOfSize:16];
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(tipLable.frame), self.alertview.frame.size.width, 0.5)];
-    lineView.backgroundColor = [UIColor blackColor];
-    [self.alertview addSubview:lineView];
-    [self.alertview addSubview:tipLable];
+    _tipLable = [[UILabel alloc]initWithFrame:CGRectMake(0,0,270,43)];
+    _tipLable.textAlignment = NSTextAlignmentCenter;
+    [_tipLable setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0]];
+    _tipLable.text = _title;
+    [_tipLable setFont:[UIFont systemFontOfSize:18]];
+    [_tipLable setTextColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0]];
+    
+    [self.alertview addSubview:_tipLable];
+    
     switch (_type) {
         case 10:
-            tipLable.text = @"温馨提示";
-            [self creatViewInAlert:lineView.frame];
+            self.alertview.frame = CGRectMake(0, 0, 270, 250);
+
+            [self creatViewInAlert];
             break;
         case 11:
             self.alertview.frame = CGRectMake(0, 0, 270, 170);
-            tipLable.text = @"请输入登录密码";
-            [self creatViewWithAlert:lineView.frame];
+            
+            [self creatViewWithAlert];
+            break;
+        case 12:
+            [self creatViewWithPidAlert];
+
         default:
             break;
     }
     self.alertview.center = CGPointMake(self.center.x, self.center.y);
+    
+    [self createBtnTitle:_btnTitleArr];
 }
 
-- (void)creatViewInAlert:(CGRect)lineF
+- (void)creatViewInAlert
 {
     
-    UILabel *isCreate = [[UILabel alloc]initWithFrame:CGRectMake(20, lineF.origin.y+8, self.alertview.frame.size.width-40, 30)];
+    UILabel *isCreate = [[UILabel alloc]initWithFrame:CGRectMake(20, _tipLable.frame.origin.y+8+ _tipLable.frame.size.height, self.alertview.frame.size.width-40, 30)];
     isCreate.text = @"是否创建一个就诊号？";
     isCreate.font = [UIFont boldSystemFontOfSize:16];
     UILabel *attenL = [[UILabel alloc]initWithFrame:CGRectMake(isCreate.frame.origin.x, isCreate.frame.origin.y+20, self.alertview.frame.size.width-40, 130)];
     attenL.font = [UIFont systemFontOfSize:15];
-    attenL.text = @"注：新建就诊号，以前的就诊信息无法查询，第一次在手机挂号到医院分诊台分诊时需要出示身份证，如果挂号填写的就诊人信息和身份证信息不符，医院有权利拒绝提供就诊服务，挂号费用不退";
+    attenL.text = _contentStr;
+    
     attenL.numberOfLines = 0;
     attenL.font = [UIFont systemFontOfSize:14];
     attenL.textColor = [UIColor redColor];
-    
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, attenL.frame.origin.y+attenL.frame.size.height-5, self.alertview.frame.size.width, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    
-    
-    UIButton *creatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    creatBtn.frame = CGRectMake(isCreate.frame.origin.x, attenL.frame.origin.y+attenL.frame.size.height, 100, 30);
-    creatBtn.tag = 101;
-    [creatBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [creatBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [creatBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    creatBtn.layer.cornerRadius = 3;
-    UIButton *quitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    quitBtn.frame = CGRectMake(creatBtn.frame.origin.x+creatBtn.frame.size.width+20, creatBtn.frame.origin.y, creatBtn.frame.size.width, 30);
-    [quitBtn setTitle:@"创建" forState:UIControlStateNormal];
-    [quitBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    quitBtn.layer.cornerRadius = 3;
-    quitBtn.tag = 100;
-    [quitBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIView *lint2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(creatBtn.frame)+10, line.frame.origin.y, 0.5, 60)];
-    lint2.backgroundColor = [UIColor lightGrayColor];
-    [self.alertview addSubview:lint2];
-    [self.alertview addSubview:creatBtn];
-    [self.alertview addSubview:quitBtn];
-    
-    [self.alertview addSubview:line];
     [self.alertview addSubview:attenL];
     [self.alertview addSubview:isCreate];
 }
-- (void)creatViewWithAlert:(CGRect)lineF
+- (void)creatViewWithAlert
 {
-    
-    _textF =[[UITextField alloc]initWithFrame:CGRectMake(15,lineF.origin.y+20, self.alertview.frame.size.width-30, 40)];
+    _textF =[[UITextField alloc]initWithFrame:CGRectMake(15, _tipLable.frame.origin.y+20+ _tipLable.frame.size.height, self.alertview.frame.size.width-30, 40)];
     _textF.placeholder = @"登录密码";
     _textF.secureTextEntry = YES;
     _textF.borderStyle = UITextBorderStyleRoundedRect;
@@ -118,29 +97,58 @@
     [_textF becomeFirstResponder];
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_textF.frame)+20, self.alertview.frame.size.width, 0.5)];
     line.backgroundColor = [UIColor lightGrayColor];
-    
-    UIButton *creatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    creatBtn.frame = CGRectMake(_textF.frame.origin.x, line.frame.origin.y+5, 100, 30);
-    creatBtn.tag = 101;
-    [creatBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    [creatBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [creatBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    creatBtn.layer.cornerRadius = 3;
-    UIButton *quitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    quitBtn.frame = CGRectMake(creatBtn.frame.origin.x+creatBtn.frame.size.width+20, creatBtn.frame.origin.y, creatBtn.frame.size.width, 30);
-    [quitBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [quitBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    quitBtn.layer.cornerRadius = 3;
-    quitBtn.tag = 100;
-    [quitBtn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIView *lint2 = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(creatBtn.frame)+10, line.frame.origin.y, 0.5, 40)];
-    lint2.backgroundColor = [UIColor lightGrayColor];
-    [self.alertview addSubview:lint2];
-    [self.alertview addSubview:creatBtn];
-    [self.alertview addSubview:quitBtn];
-    [self.alertview addSubview:line];
     [self.alertview addSubview:_textF];
     
+}
+
+- (void)creatViewWithPidAlert
+{
+    UILabel *showL = [[UILabel alloc]initWithFrame:CGRectMake(20, _tipLable.frame.origin.y+_tipLable.frame.size.height, self.alertview.frame.size.width-40, self.alertview.frame.size.height-43-48)];
+    [showL setTextColor:[UIColor colorWithRed:149/255.0 green:149/255.0 blue:149/255.0 alpha:1.0]];
+    showL.numberOfLines = 0;
+    [showL setFont:[UIFont systemFontOfSize:18]];
+    [showL setText:_contentStr];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:showL.text];;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:9];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, showL.text.length)];
+    
+    showL.attributedText = attributedString;
+    showL.textAlignment = NSTextAlignmentCenter;
+    
+    
+    [self.alertview addSubview:showL];
+    
+}
+- (void)createBtnTitle:(NSArray *)titleArr
+{
+    
+    CGFloat m = self.alertview.frame.size.width;
+    
+    for (int i=0; i<_numBtn; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        if (_numBtn == 1) {
+            btn.frame = CGRectMake(20, self.alertview.frame.size.height-48,(m-40), 33);
+        }else{
+            
+            btn.frame = CGRectMake(20+i*(20+(m-60)/2), self.alertview.frame.size.height-48, (m-60)/2, 33);
+        }
+        
+        [btn setTitle:titleArr[i] forState:UIControlStateNormal];
+        btn.tag = 100+i;
+        btn.layer.cornerRadius = 5;
+        btn.clipsToBounds = YES;
+        [btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+        if ([titleArr[i] isEqualToString:@"确定"]||[titleArr[i] isEqualToString:@"退出页面"]) {
+//            [btn setBackgroundColor:[UIColor colorWithHexString:[ThemeSingleton sharedInstance].UINavgationBar alpha:1]];
+            [btn setBackgroundColor:[UIColor colorWithRed:46/255.0 green:149/255.0 blue:250/255.0 alpha:1.0]];
+        }else{
+            
+            [btn setBackgroundColor:[UIColor colorWithRed:255/255.0 green:102/255.0 blue:102/255.0 alpha:1.0]];
+        }
+        [self.alertview addSubview:btn];
+    }
 }
 - (void)blackClick
 {
@@ -149,7 +157,7 @@
 - (void)cancleView
 {
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -177,24 +185,32 @@
 }
 
 -(void)clickButton:(UIButton *)button{
+//    DLog(@"%ld",button.tag);
     if ([self.delegate respondsToSelector:@selector(didClickButtonAtIndex:password:)]) {
         if (_password == nil) {
             [self textFieldShouldEndEditing:_textF];
             [_textF resignFirstResponder];
         }
+        if ([button.titleLabel.text isEqualToString:@"退出页面"]) {
+            button.tag = 101;
+        }
         [self.delegate didClickButtonAtIndex:button.tag password:_password];
     }
     [self cancleView];
 }
--(void)initWithTitle:(NSString *) title Image:(UIImage *)image CancelButton:(NSString *)cancelButton OkButton:(NSString *)okButton
+-(void)initWithTitle:(NSString *) title contentStr:(NSString *)content type:(NSInteger)type btnNum:(NSInteger)btnNum btntitleArr:(NSArray *)btnTitleArr
+
 {
-    
-    self.title = title;
-    self.cancelButtonTitle = cancelButton;
-    self.okButtonTitle = okButton;
+    _title = title;
+    _type = type;
+    _numBtn = btnNum;
+    _btnTitleArr = btnTitleArr;
+    _contentStr = content;
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+    
+//    DLog(@"%@",textField.text);
     _password = textField.text;
     return YES;
 }
